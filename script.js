@@ -13,11 +13,6 @@ function getComputerChoice(){
 
 }
 
-function getHumanChoice(){
-    var choice = prompt("What is your move?(Rock, Paper, or Scissors)").toLowerCase();
-    console.log(choice);
-    return choice;
-}
 
 function playRound(humanChoice, ComputerChoice){
     if(humanChoice == "scissors" && ComputerChoice == "paper" ){
@@ -47,10 +42,7 @@ function playRound(humanChoice, ComputerChoice){
 }
 
 function playGame(){
-    for(var i = 0; i<5; i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
+    while(humanScore <5 && computerScore <5){
         playRound(humanSelection, computerSelection);
     }
 
