@@ -1,0 +1,45 @@
+body{
+    background-color:darkslategray;
+}
+
+.header{
+    text-align: center;
+    background-color: cadetblue;
+    padding: 20px 50px;
+    margin: 0px;
+}
+
+h1{
+    font-size: 60px;
+}
+
+img{
+    border: 5px solid black;
+    width: 170px;
+    height: 170px;
+}
+
+.scoreBoard{
+    display: flex;
+    justify-content: center;
+    padding: 40px 40px 5px;
+    gap: 10px;
+}
+
+h2{
+    text-align: center;
+    font-size: 35px;
+}
+
+h3{
+    text-align: center;
+    font-size: 25px;
+}
+
+.options{
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    gap: 20px;
+
+}
