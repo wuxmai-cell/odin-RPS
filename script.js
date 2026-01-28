@@ -1,5 +1,6 @@
 var humanScore = 0;
 var computerScore = 0;
+var humanSelection;
 
 function getComputerChoice(){
     const num =Math.random();
@@ -13,45 +14,81 @@ function getComputerChoice(){
 
 }
 
+const options = document.querySelector(".options");
+
+
+const humanImg = document.querySelector(".humanScore");
+const computerImg = document.querySelector(".computerScore");
+const desc = document.querySelector("h3");
+const hScore = document.querySelector(".hScore");
+const cScore = document.querySelector(".cScore");
 
 function playRound(humanChoice, ComputerChoice){
+
     if(humanChoice == "scissors" && ComputerChoice == "paper" ){
-        console.log("You Win! scissors beats paper!");
+        desc.textContent = "You Win! scissors beats paper!";
+        humanImg.src = "images/scissors.png"
+        computerImg.src = "images/paper.png"
         humanScore ++;
     }else if(humanChoice == "rock" && ComputerChoice == "scissors"){
-        console.log("You Win! Rock beats Scissors!");
+        desc.textContent = "You Win! Rock beats Scissors!";
+        humanImg.src = "images/rock.jpg"
+        computerImg.src = "images/scissors.png"
         humanScore++;
     }else if(humanChoice == "paper" && ComputerChoice == "rock"){
-        console.log("You Win! Paper beats Rock!");
+        desc.textContent = "You Win! Paper beats Rock!";
+        humanImg.src = "images/paper.png"
+        computerImg.src = "images/rock.jpg"
         humanScore++;
     }else if(ComputerChoice == "scissors" && humanChoice == "paper"){
-        console.log("You Lose! scissors beats paper!");
+        desc.textContent = "You Lose! scissors beats paper!";
+        humanImg.src = "images/paper.png"
+        computerImg.src = "images/scissors.png"
         computerScore ++;
     }else if(ComputerChoice == "rock" && humanChoice == "scissors"){
-        console.log("You Lose! Rock beats Scissors!");
+        desc.textContent  = "You Lose! Rock beats Scissors!";
+        humanImg.src = "images/scissors.png"
+        computerImg.src = "images/rock.jpg"
         computerScore ++;
     }else if(ComputerChoice == "paper" && humanChoice == "rock"){
-        console.log("You Lose! Paper beats Rock!");
+        desc.textContent = "You Lose! Paper beats Rock!";
+        humanImg.src = "images/rock.jpg"
+        computerImg.src = "images/paper.png"
         computerScore++;
     }else{
-        console.log("Tie! We both picked the same one!");
+        desc.textContent = "Tie! We both picked the same one!";
     }
 
-    console.log("Your Score: "+humanScore);
-    console.log("My Score: "+computerScore);
-}
-
-function playGame(){
-    while(humanScore <5 && computerScore <5){
-        playRound(humanSelection, computerSelection);
-    }
-
+    hScore.textContent = "Your Score: "+humanScore;
+    cScore.textContent = "Computer Score: "+computerScore;
     
-    if(humanScore>computerScore){
-        console.log("You WIN!");
-    }else if(humanScore<computerScore){
-        console.log("You LOSE!");
-    }
 }
 
-playGame();
+options.addEventListener("click", function(e){
+    let target = e.target;
+
+    switch(target.id){
+        case 'rock':
+            humanSelection = 'rock';
+            break;
+        case 'paper':
+            humanSelection = 'paper';
+            break;
+        case 'scissors':
+            humanSelection = 'scissors';
+            break;
+    }
+
+    computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+
+    if(humanScore == 5 || computerScore == 5){
+        if(humanScore>computerScore){
+            desc.textContent += "\n YOU WIN!"
+        }else if(humanScore<computerScore){
+            desc.textContent += "\n YOU LOSE!"
+        }
+    }
+
+});
+
